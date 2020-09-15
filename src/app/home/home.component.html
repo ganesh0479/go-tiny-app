@@ -1,6 +1,6 @@
 <ngb-tabset class="nav-justified" style="height: 500px">
   <ngb-tab>
-    <ng-template ngbTabTitle><h1>CARDS</h1></ng-template>
+    <ng-template ngbTabTitle><h3>CARDS</h3></ng-template>
     <ng-template ngbTabContent>
       <br><br>
       <div class="row justify-content-between">
@@ -14,10 +14,11 @@
         </div>
       </div>
       <br><br>
+      <app-card [cards]="cards"></app-card>
     </ng-template>
   </ngb-tab>
   <ngb-tab>
-    <ng-template ngbTabTitle><h1>GROUPS</h1></ng-template>
+    <ng-template ngbTabTitle><h3>GROUPS</h3></ng-template>
     <ng-template ngbTabContent>
     </ng-template>
   </ngb-tab>

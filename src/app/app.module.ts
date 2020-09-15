@@ -8,20 +8,24 @@ import {LoginComponent} from './user/login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { CardComponent } from './card/card.component';
+import {PopoverModule} from 'ngx-bootstrap/popover';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    CardComponent
   ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
         ReactiveFormsModule,
-        NgbModule
+        NgbModule,
+        PopoverModule.forRoot()
     ],
   providers: [],
   bootstrap: [AppComponent]
