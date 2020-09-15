@@ -1,0 +1,41 @@
+<div class="container border-dark d-flex flex-column justify-content-center w-25"
+     style="border-radius: 3px;background-color: darkorange">
+  <h6 *ngIf="!signUpStatus" style="color: red">{{signUpStatusMessage}}</h6>
+  <div class="modal-header text-white ">
+    <h2>GO TINY</h2>
+  </div>
+  <div>
+    <form [formGroup]="signupForm" class="modal-body" (ngSubmit)="onsumbitForm(signupForm.value)">
+      <div class="form-group">
+        <label for="name">
+          <b>Name</b>
+        </label>
+        <input id="name" class="form-control" type="text" formControlName="name">
+      </div>
+      <div class="form-group">
+        <label for="emailId">
+          <b> Email</b>
+        </label>
+        <input id="emailId" class="form-control" type="email" formControlName="emailId">
+      </div>
+      <div class="form-group">
+        <label for="password">
+          <b>Password</b>
+        </label>
+        <input id="password" class="form-control" type="password" formControlName="password">
+      </div>
+      <div>
+        <button class="btn bg-dark text-white btn-block mr-0 ml-0" type="submit"><b><i class="fa fa-user-plus"></i>
+          &ngsp;&nbsp;&ngsp;&nbsp;&ngsp;&nbsp;SIGN
+          UP</b>
+        </button>
+      </div>
+      <br>
+      <div>
+        <span>Already Existing user? <i class="fa fa-sign-in"></i>&ngsp;&nbsp;&ngsp;
+          <a href="" routerLink="login"
+             class="text-white">Login</a></span>
+      </div>
+    </form>
+  </div>
+</div>
