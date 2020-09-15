@@ -16,5 +16,5 @@ spec:
         - name: go-tiny-app
           image: sivacontainerregistry.azurecr.io/gui/go-tiny:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 80
           imagePullPolicy: Always
