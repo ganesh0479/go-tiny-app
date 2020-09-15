@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
 
   private navigateToHome(status: any): void {
     if (status.signInSuccess) {
-      console.log('success');
+      this.router.navigate(['home']);
     } else {
       this.signinStatus = false;
       this.signInErrorMessage = 'Unable to Sign In!!';

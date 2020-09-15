@@ -34,6 +34,7 @@ export class UserComponent implements OnInit {
   private navigateToHome(status: any, user: string): void {
     if (status.signInSuccess) {
       sessionStorage.setItem('user', user);
+      this.router.navigate(['home']);
     } else {
       this.signUpStatus = false;
       this.signUpStatusMessage = 'Unable to Sign Up!!';
