@@ -24,14 +24,16 @@ export class LoginComponent implements OnInit {
 
   onsumbitLoginForm(signinForm: User): void {
     console.log(signinForm);
+    const user = signinForm.emailId;
     this.userService.login(signinForm).subscribe({
-      next: data => this.navigateToHome(data),
+      next: data => this.navigateToHome(data, user),
       error: error => console.error('There was an error!', error)
     });
   }
 
-  private navigateToHome(status: any): void {
+  private navigateToHome(status: any, user: string): void {
     if (status.signInSuccess) {
+      sessionStorage.setItem('user', user);
       this.router.navigate(['home']);
     } else {
       this.signinStatus = false;

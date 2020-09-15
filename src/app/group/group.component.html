@@ -1,0 +1,25 @@
+<br>
+<br>
+<br>
+<div class="container">
+  <span class="btn btn-primary">ADD GROUP</span>
+  <br>
+  <br>
+
+  <div *ngIf="userGroups!==undefined && userGroups.length>0" class="container justify-content-center p-5 scroll"
+       style="height:19em">
+    <h4>Available groups:</h4>
+    <br>
+    <br>
+    <br>
+    <div class="row justify-content-around">
+      <div *ngFor="let userGroup of userGroups;">
+        <span class="clearfix" ng-if="$index % 3 == 0"></span>
+        <span class="col-4 flex-fill"> {{userGroup.groupName}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="container justify-content-center text-white" *ngIf="userGroups===undefined ||userGroups.length===0 ">
+    <h4>No groups are available to display. Please add the group</h4>
+  </div>
+</div>
