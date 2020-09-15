@@ -11,6 +11,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { CardComponent } from './card/card.component';
 import {PopoverModule} from 'ngx-bootstrap/popover';
 import { GroupComponent } from './group/group.component';
+import { GroupCardComponent } from './group/group-card/group-card.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { GroupComponent } from './group/group.component';
     LoginComponent,
     HomeComponent,
     CardComponent,
-    GroupComponent
+    GroupComponent,
+    GroupCardComponent
   ],
     imports: [
         BrowserModule,

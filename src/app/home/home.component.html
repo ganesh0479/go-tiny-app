@@ -1,5 +1,5 @@
-<ngb-tabset class="nav-justified" style="height: 500px">
-  <ngb-tab>
+<ngb-tabset class="nav-justified" style="height: 500px" [activeId]="activeTab">>
+  <ngb-tab id="card">
     <ng-template ngbTabTitle><h3>CARDS</h3></ng-template>
     <ng-template ngbTabContent>
       <br><br>
@@ -17,7 +17,7 @@
       <app-card [cards]="cards"></app-card>
     </ng-template>
   </ngb-tab>
-  <ngb-tab>
+  <ngb-tab id="group">
     <ng-template ngbTabTitle><h3>GROUPS</h3></ng-template>
     <ng-template ngbTabContent>
       <app-group></app-group>

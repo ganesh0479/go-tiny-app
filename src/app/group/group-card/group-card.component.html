@@ -1,0 +1,18 @@
+<br>
+<br>
+<ngb-tabset class="nav-justified" style="height: 500px">
+  <ngb-tab *ngFor="let group of groupTabs">
+    <ng-template ngbTabTitle><h5 (click)="fetchData(group.tabName)">{{group.tabName}}</h5></ng-template>
+    <ng-template ngbTabContent>
+      <br><br>
+      <div class="row justify-content-around">
+        <div *ngFor="let action of group.tabActions">
+          <span class="btn btn-info align-content-center" (click)="resolveAction(action.actionName)">
+            <b>{{action.actionName}}</b></span>
+        </div>
+      </div>
+      <br>
+      <app-card [cards]="cards"></app-card>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>

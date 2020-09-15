@@ -9,6 +9,8 @@ import {UserGroup} from '../model/user-group';
 })
 export class GroupComponent implements OnInit {
   userGroups: UserGroup[];
+  groupName;
+  role;
 
   constructor(private groupService: GroupService) {
   }
@@ -16,5 +18,10 @@ export class GroupComponent implements OnInit {
   ngOnInit(): void {
     const user = sessionStorage.getItem('user');
     this.groupService.getUserGroups(user).subscribe(data => this.userGroups = data.userGroupRolesResponse);
+  }
+
+  resolveGroupCard(group: string, userRole: string): void {
+    this.groupName = group;
+    this.role = 'ADMIN';
   }
 }
