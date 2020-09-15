@@ -1,0 +1,13 @@
+language: node.js
+services: docker
+sudo: true
+jobs:
+  include:
+    - stage: Build
+      name: "Pushing docker image to Azure"
+      script:
+        - docker build -t go-tiny .
+        - docker login ${ACR_REGISTRY} -u ${ACR_REGISTRY_USER} -p ${ACR_REGISTRY_PWD}
+        - docker tag url-shortner ${ACR_REGISTRY}/gui/go-tiny
+        - docker push ${ACR_REGISTRY}/gui/go-tiny
+
