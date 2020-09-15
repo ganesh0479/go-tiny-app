@@ -6,12 +6,14 @@ import {AppComponent} from './app.component';
 import {UserComponent} from './user/user.component';
 import {LoginComponent} from './user/login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import { HomeComponent } from './home/home.component';
+import {HomeComponent} from './home/home.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { CardComponent } from './card/card.component';
+import {CardComponent} from './card/card.component';
 import {PopoverModule} from 'ngx-bootstrap/popover';
-import { GroupComponent } from './group/group.component';
-import { GroupCardComponent } from './group/group-card/group-card.component';
+import {GroupComponent} from './group/group.component';
+import {GroupCardComponent} from './group/group-card/group-card.component';
+import {AddCardComponent} from './card/add-card/add-card.component';
+import {ModalModule} from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -21,16 +23,18 @@ import { GroupCardComponent } from './group/group-card/group-card.component';
     HomeComponent,
     CardComponent,
     GroupComponent,
-    GroupCardComponent
+    GroupCardComponent,
+    AddCardComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        NgbModule,
-        PopoverModule.forRoot()
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    NgbModule,
+    ModalModule.forRoot(),
+    PopoverModule.forRoot()
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

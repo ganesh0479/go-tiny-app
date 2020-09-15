@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {CardService} from '../services/card.service';
 import {Card} from '../model/card';
 import {ActivatedRoute} from '@angular/router';
+import {AddCardComponent} from '../card/add-card/add-card.component';
+import {BsModalRef, BsModalService, ModalOptions} from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-home',
@@ -10,10 +12,15 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   cards: Card[];
-  routeName: string;
   activeTab: string;
+  bsModalRef: BsModalRef;
+  modalOptions: ModalOptions = {
+    animated: true,
+    keyboard: true,
+    backdrop: 'static',
+  };
 
-  constructor(private cardService: CardService, private route: ActivatedRoute) {
+  constructor(private cardService: CardService, private route: ActivatedRoute, private bsModalService: BsModalService) {
   }
 
   ngOnInit(): void {
@@ -31,5 +38,12 @@ export class HomeComponent implements OnInit {
     } else {
       this.activeTab = 'card';
     }
+  }
+
+  addCard(): void {
+    this.bsModalRef = this.bsModalService.show(AddCardComponent, this.modalOptions);
+    this.bsModalRef.content.closeBtnName = 'CANCEL';
+    this.bsModalRef.content.submitBtnName = 'ADD CARD';
+    this.bsModalRef.hide();
   }
 }
