@@ -7,18 +7,15 @@
     <br>
     <br>
 
-    <div *ngIf="userGroups!==undefined && userGroups.length>0" class="container justify-content-center p-5 scroll"
+    <div *ngIf="userGroups!==undefined && userGroups.length>0" class="container scroll"
          style="height:19em">
       <h4>Available groups:</h4>
       <br>
-      <br>
-      <br>
-      <div class="row justify-content-around">
-        <div *ngFor="let userGroup of userGroups;">
-          <span class="clearfix" ng-if="$index % 3 == 0"></span>
-          <span class="col-4 flex-fill"
-                (click)="resolveGroupCard(userGroup.groupName,userGroup.role)"> {{userGroup.groupName}}</span>
+      <div class="row">
+        <div class="col-3" *ngFor="let userGroup of userGroups;">
+          <a class="text-light" (click)="resolveGroupCard(userGroup.groupName,userGroup.role)"><h5>{{userGroup.groupName}}</h5></a>
         </div>
+        <br>
       </div>
     </div>
   </div>
