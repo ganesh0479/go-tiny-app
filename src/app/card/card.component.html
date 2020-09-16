@@ -23,8 +23,21 @@
               class="fa fa-archive fa-1x text-white"></i></span>
             <span class="col-1 btn mt-0 mb-0 pt-0 pb-0 text-white" style="margin-left: 55px" (click)="addCardToGroup()"> <i
               class="fa fa-google fa-1.5x"></i></span>
-            <a class="col-1 float-right btn text-white mt-0 mb-0 pt-0 pb-0" [href]="shareCard(card)"><i
-              class="fa fa-share fa-1x"></i></a>
+            <ng-template #sharePopTemplate>
+              <form [formGroup]="shareForm" (ngSubmit)="shareCard(card,shareForm.value)">
+                <input type="text" placeholder="Sender's Email" formControlName="from"
+                       style="border-radius: 0;border-width: thin">
+                <br>
+                <input type="text" placeholder="Receiver's Email" formControlName="to"
+                       style="border-radius: 0;border-width: thin">
+                <br>
+                <button type="submit" class="btn btn-danger pt-0 pb-0 m-0">SHARE
+                </button>
+              </form>
+            </ng-template>
+            <span class="col-1 float-right btn text-white mt-0 mb-0 pt-0 pb-0" [popover]="sharePopTemplate"
+                  popoverTitle="Please enter the details" placement="top" [outsideClick]="true"><i
+              class="fa fa-share fa-1x"></i></span>
           </div>
           <div class="card-footer bg-dark row ml-0 mr-0 pb-0 mt-0" style="padding-top: 3px"
                *ngIf="tabName==='PENDING CARDS'">
@@ -45,8 +58,21 @@
             <span class="col-1 btn mt-0 mb-0 pt-0 pb-0" style="padding-left: 90px" [popover]="popTemplate"
                   popoverTitle="Are you sure to delete?" placement="top" [outsideClick]="true"> <i
               class="fa fa-archive fa-1x text-white"></i></span>
-            <a class="col-1 float-right btn text-white mt-0 mb-0 pt-0 pb-0" [href]="shareCard()"><i
-              class="fa fa-share fa-1x"></i></a>
+            <ng-template #sharePopTemplateGroup>
+              <form [formGroup]="shareForm" (ngSubmit)="shareCard(card,shareForm.value)">
+                <input type="text" placeholder="Sender's Email" formControlName="from"
+                       style="border-radius: 0;border-width: thin">
+                <br>
+                <input type="text" placeholder="Receiver's Email" formControlName="to"
+                       style="border-radius: 0;border-width: thin">
+                <br>
+                <button type="submit" class="btn btn-danger pt-0 pb-0 m-0">SHARE
+                </button>
+              </form>
+            </ng-template>
+            <span class="col-1 float-right btn text-white mt-0 mb-0 pt-0 pb-0" [popover]="sharePopTemplateGroup"
+                  popoverTitle="Please enter the details" placement="top" [outsideClick]="true"><i
+              class="fa fa-share fa-1x"></i></span>
           </div>
         </div>
       </div>

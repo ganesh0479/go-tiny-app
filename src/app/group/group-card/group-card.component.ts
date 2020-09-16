@@ -6,6 +6,7 @@ import {CardService} from '../../services/card.service';
 import {BsModalRef, BsModalService, ModalOptions} from 'ngx-bootstrap/modal';
 import {UserGroupComponent} from '../user-group/user-group.component';
 import {UserSignupService} from '../../user/user-signup.service';
+import {ShareGroupComponent} from '../share-group/share-group.component';
 
 @Component({
   selector: 'app-group-card',
@@ -19,6 +20,13 @@ export class GroupCardComponent implements OnInit {
   cards: Card[];
   addUserBsModalRef: BsModalRef;
   addUserModalOptions: ModalOptions = {
+    animated: true,
+    keyboard: true,
+    backdrop: 'static',
+  };
+
+  shareGroupBsModalRef: BsModalRef;
+  shareGroupModalOptions: ModalOptions = {
     animated: true,
     keyboard: true,
     backdrop: 'static',
@@ -45,6 +53,9 @@ export class GroupCardComponent implements OnInit {
     if (actionName === 'ADD USER TO GROUP') {
       this.addUser();
     }
+    if (actionName === 'SHARE CARDS OF GROUP') {
+      this.shareGroupCard();
+    }
   }
 
   fetchData(tabName: string): void {
@@ -55,6 +66,13 @@ export class GroupCardComponent implements OnInit {
     } else if (tabName === 'AUTHORIZE CARDS') {
       this.getCardsOfGroupByStatus(this.groupName, 'APPROVED');
     }
+  }
+
+  shareGroupCard(): void {
+    this.shareGroupModalOptions.initialState = {cards: this.cards};
+    this.shareGroupBsModalRef = this.bsModalService.show(ShareGroupComponent, this.shareGroupModalOptions);
+    this.shareGroupBsModalRef.content.closeBtnName = 'CANCEL';
+    this.shareGroupBsModalRef.content.submitBtnName = 'SHARE';
   }
 
   addUser(): void {

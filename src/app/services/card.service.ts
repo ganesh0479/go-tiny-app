@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Card} from '../model/card';
 import {CardGroup} from '../model/card-group';
+import {TinyMail} from '../model/TinyMail';
 
 @Injectable({
   providedIn: 'root'
@@ -59,5 +60,10 @@ export class CardService {
 
   getCardsBelongToGroupByStatus(groupName: string, status: string): Observable<any> {
     return this.httpClient.get<any>('http://localhost:8080/api/v1/go-tiny/cards/' + status + '/groups/' + groupName);
+  }
+
+  sendCard(tinyMail: TinyMail): Observable<any> {
+    console.log('Tiny mail : ' + JSON.stringify(tinyMail));
+    return this.httpClient.post('http://localhost:8080/api/v1/go-tiny/mails', tinyMail);
   }
 }

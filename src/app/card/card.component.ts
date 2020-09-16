@@ -5,6 +5,8 @@ import {Router} from '@angular/router';
 import {BsModalRef, BsModalService, ModalOptions} from 'ngx-bootstrap/modal';
 import {UpdateCardComponent} from './update-card/update-card.component';
 import {CardGroupComponent} from './card-group/card-group.component';
+import {TinyMail, TinyMailRequest} from '../model/TinyMail';
+import {FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'app-card',
@@ -22,7 +24,7 @@ export class CardComponent implements OnInit {
     keyboard: true,
     backdrop: 'static',
   };
-
+  shareForm;
   cardGroupBsModalRef: BsModalRef;
   cardGroupModalOptions: ModalOptions = {
     animated: true,
@@ -30,7 +32,8 @@ export class CardComponent implements OnInit {
     backdrop: 'static',
   };
 
-  constructor(private cardService: CardService, private router: Router, private bsModalService: BsModalService) {
+  constructor(private cardService: CardService, private router: Router, private bsModalService: BsModalService, private formBuilder: FormBuilder) {
+    this.shareForm = this.formBuilder.group({from: '', to: ''});
   }
 
   ngOnInit(): void {
@@ -80,8 +83,11 @@ export class CardComponent implements OnInit {
     });
   }
 
-  shareCard(card: Card): string {
-    return 'mailto:?subject=' + card.title + ' Bookmark' + '&body=' + this.constructEmailBody(card);
+  shareCard(card: Card, mailInfo: any): void {
+    this.cardService.sendCard(this.constructTinyMailRequest(card, mailInfo.from, mailInfo.to)).subscribe({
+      next: data => this.navigateToHome(),
+      error: error => console.error('There was an error!', error)
+    });
   }
 
   private navigateToHome(): void {
@@ -90,38 +96,15 @@ export class CardComponent implements OnInit {
     });
   }
 
-  private constructEmailBody(card: Card): string {
-    return '<body>Hi,<br><br>Please find the ' + '<b>' + card.title + '<b>' + ' bookmark. Please click on Go Tiny to visit webpage.<br><br>'
-      + this.constructEmailCardHeader(card.title) + this.constructEmailCardBody(card.description)
-      + this.constructEmailCardFooter(card.tinyUrl);
-  }
-
-  private constructEmailCardHeader(title: string): string {
-    return '<table style="width: 300px;height: 200px;font-family: \'Calibri\'">\n' +
-      '  <tr>\n' +
-      '    <th style="background-color: black; color: white;height:75px;font-size: 30px">\n' +
-      '      <b>' + title;
-  }
-
-  private constructEmailCardBody(description: string): string {
-    return '</b>\n' +
-      '    </th>\n' +
-      '  </tr>\n' +
-      '  <tr>\n' +
-      '    <td>\n' +
-      '      <b>' + description;
-  }
-
-  private constructEmailCardFooter(tinyUrl: string): string {
-    return '</b>\n' +
-      '    </td>\n' +
-      '  </tr>\n' +
-      '  <tr style="height: 40px">\n' +
-      '    <th style="background-color: black; color: white;">\n' +
-      '      <a href="' + tinyUrl + '"' + '>Go Tiny</a>\n' +
-      '    </th>\n' +
-      '  </tr>\n' +
-      '</table>\n' +
-      '</body>';
+  constructTinyMailRequest(card: Card, from: string, to: string): TinyMail {
+    const tinyMail = new TinyMail();
+    tinyMail.from = from;
+    tinyMail.to = to;
+    const mailRequest = new TinyMailRequest();
+    mailRequest.description = card.description;
+    mailRequest.title = card.title;
+    mailRequest.tinyUrl = card.tinyUrl;
+    tinyMail.mailRequests.push(mailRequest);
+    return tinyMail;
   }
 }

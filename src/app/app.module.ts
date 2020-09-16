@@ -18,6 +18,7 @@ import { UpdateCardComponent } from './card/update-card/update-card.component';
 import { AddGroupComponent } from './group/add-group/add-group.component';
 import { CardGroupComponent } from './card/card-group/card-group.component';
 import { UserGroupComponent } from './group/user-group/user-group.component';
+import { ShareGroupComponent } from './group/share-group/share-group.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { UserGroupComponent } from './group/user-group/user-group.component';
     UpdateCardComponent,
     AddGroupComponent,
     CardGroupComponent,
-    UserGroupComponent
+    UserGroupComponent,
+    ShareGroupComponent
   ],
   imports: [
     BrowserModule,
