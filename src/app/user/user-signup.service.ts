@@ -20,4 +20,8 @@ export class UserSignupService {
     console.log('User Service: ' + user);
     return this.httpClient.patch<any>('http://localhost:8080/api/v1/go-tiny/users', user);
   }
+
+  getAll(): Observable<any> {
+    return this.httpClient.get<any>('http://localhost:8080/api/v1/go-tiny/users');
+  }
 }

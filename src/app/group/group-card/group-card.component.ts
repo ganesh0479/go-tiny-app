@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {CardService} from '../../services/card.service';
 import {BsModalRef, BsModalService, ModalOptions} from 'ngx-bootstrap/modal';
 import {UserGroupComponent} from '../user-group/user-group.component';
+import {UserSignupService} from '../../user/user-signup.service';
 
 @Component({
   selector: 'app-group-card',
@@ -23,7 +24,7 @@ export class GroupCardComponent implements OnInit {
     backdrop: 'static',
   };
 
-  constructor(private router: Router, private cardService: CardService, private bsModalService: BsModalService) {
+  constructor(private router: Router, private cardService: CardService, private bsModalService: BsModalService, private userSignUpService: UserSignupService) {
   }
 
   ngOnInit(): void {
@@ -57,10 +58,12 @@ export class GroupCardComponent implements OnInit {
   }
 
   addUser(): void {
-    this.addUserModalOptions.initialState = {};
-    this.addUserBsModalRef = this.bsModalService.show(UserGroupComponent, this.addUserModalOptions);
-    this.addUserBsModalRef.content.closeBtnName = 'CANCEL';
-    this.addUserBsModalRef.content.submitBtnName = 'ASSIGN';
+    const userResponse = this.userSignUpService.getAll().subscribe(data => {
+      this.addUserModalOptions.initialState = {users: data.users};
+      this.addUserBsModalRef = this.bsModalService.show(UserGroupComponent, this.addUserModalOptions);
+      this.addUserBsModalRef.content.closeBtnName = 'CANCEL';
+      this.addUserBsModalRef.content.submitBtnName = 'ASSIGN';
+    });
   }
 
   getCardsOfGroup(groupName: string): void {

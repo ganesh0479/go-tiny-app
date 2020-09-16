@@ -26,10 +26,6 @@ export class UserGroupComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onselectGroup(name: any): void {
-    console.log('Selected group Name :' + name.target.value);
-  }
-
   addUserGroup(groupToAdd: UserGroup): void {
     this.groupService.addUserToGroup(groupToAdd).subscribe({
       next: data => this.navigateToGroup(),
@@ -41,5 +37,4 @@ export class UserGroupComponent implements OnInit {
     this.bsModalRef.hide();
     this.router.navigate(['home']);
   }
-
 }

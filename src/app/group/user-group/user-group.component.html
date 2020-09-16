@@ -7,12 +7,12 @@
 <form [formGroup]="userGroup" (ngSubmit)="addUserGroup(userGroup.value)">
   <div class="modal-body scroll">
     <label for="userName"><h6>User</h6></label>
-    <select class="form-control" (change)="onselectGroup($event)" formControlName="userName">
-      <option *ngFor="let user of users" [value]="user.name" id="userName"
+    <select class="form-control" formControlName="userName">
+      <option *ngFor="let user of users" [value]="user.emailId" id="userName"
               [selected]="user.selected == true">{{user.name}}</option>
     </select>
     <label for="roleName"><h6>Role</h6></label>
-    <select class="form-control" (change)="onselectGroup($event)" formControlName="role">
+    <select class="form-control" formControlName="role">
       <option *ngFor="let role of roles" [value]="role.value" id="roleName"
               [selected]="role.selected == true">{{role.label}}</option>
     </select>
