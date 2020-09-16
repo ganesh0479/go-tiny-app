@@ -34,6 +34,7 @@ export class CardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('cards group ' + this.cards);
   }
 
   updateCard(card: Card): void {
@@ -52,21 +53,28 @@ export class CardComponent implements OnInit {
   }
 
   deleteCard(cardName: string): void {
-    this.cardService.deleteCard(cardName).subscribe({
-      next: data => this.navigateToHome(),
-      error: error => console.error('There was an error!', error)
-    });
+    if (this.tabName === 'GROUP CARDS') {
+      this.cardService.deleteCardInTheGroup(cardName, this.groupName).subscribe({
+        next: data => this.navigateToHome(),
+        error: error => console.error('There was an error!', error)
+      });
+    } else {
+      this.cardService.deleteCard(cardName).subscribe({
+        next: data => this.navigateToHome(),
+        error: error => console.error('There was an error!', error)
+      });
+    }
   }
 
   approveCard(cardName: string): void {
-    this.cardService.approveCard(cardName).subscribe({
+    this.cardService.approveCard(cardName, this.groupName).subscribe({
       next: data => this.navigateToHome(),
       error: error => console.error('There was an error!', error)
     });
   }
 
   authorizeCard(cardName: string): void {
-    this.cardService.authorizeCard(cardName).subscribe({
+    this.cardService.authorizeCard(cardName, this.groupName).subscribe({
       next: data => this.navigateToHome(),
       error: error => console.error('There was an error!', error)
     });

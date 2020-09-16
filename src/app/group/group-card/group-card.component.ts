@@ -3,6 +3,7 @@ import {GroupUtil} from '../../util/group-util';
 import {Card} from '../../model/card';
 import {Router} from '@angular/router';
 import {CardService} from '../../services/card.service';
+import {GroupService} from '../../services/group.service';
 
 @Component({
   selector: 'app-group-card',
@@ -15,7 +16,7 @@ export class GroupCardComponent implements OnInit {
   groupTabs: any;
   cards: Card[];
 
-  constructor(private router: Router, private cardService: CardService) {
+  constructor(private router: Router, private cardService: CardService, private groupService: GroupService) {
   }
 
   ngOnInit(): void {
@@ -35,39 +36,31 @@ export class GroupCardComponent implements OnInit {
   resolveAction(actionName: string): void {
     if (actionName === 'ADD USER') {
       this.addUser();
-    } else if (actionName === 'APPROVE CARD') {
-      this.approveCard();
-    } else if (actionName === 'AUTHORIZE CARD') {
-      this.authorizeCard();
     }
   }
 
   fetchData(tabName: string): void {
     if (tabName === 'PENDING CARDS') {
-      // fetch pending cards
+      this.getCardsOfGroupByStatus(this.groupName, 'UPDATE_PENDING');
+    } else if (tabName === 'GROUP CARDS') {
+      this.getCardsOfGroup(this.groupName);
     } else if (tabName === 'AUTHORIZE CARDS') {
-      // fetch authorize cards
+      this.getCardsOfGroupByStatus(this.groupName, 'APPROVED');
     }
   }
 
   addUser(): void {
   }
 
-  approveCard(): void {
-  }
-
-  authorizeCard(): void {
-  }
-
   getCardsOfGroup(groupName: string): void {
     this.cardService.getCardsBelongToGroup(groupName).subscribe(data => {
-      this.cards = data.cardResponses;
+      this.cards = data === null ? [] : data.cardResponses;
     });
   }
 
   getCardsOfGroupByStatus(groupName: string, status: string): void {
-    this.cardService.getCardsBelongToGroup(groupName).subscribe(data => {
-      this.cards = data.cardResponses;
+    this.cardService.getCardsBelongToGroupByStatus(groupName, status).subscribe(data => {
+      this.cards = data === null ? [] : data.cardResponses;
     });
   }
 }
