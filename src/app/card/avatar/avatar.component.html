@@ -1,0 +1,22 @@
+<div class="modal-header">
+  <h4 class="modal-title" style="color: #3e53af">UPLOAD AVATAR</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body scroll">
+  <label><h5>Select Avatar</h5></label>
+  <br>
+  <div class="custom-file">
+    <input #imageInput
+           type="file" class="custom-file-input"
+           accept="image/*"
+           (change)="processFile(imageInput)" id="customFile">
+    <label class="custom-file-label" for="customFile">Choose avatar</label>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="submit" class="btn btn-dark"
+  >{{submitBtnName}}</button>
+  <button type="button" class="btn btn-dark" (click)="bsModalRef.hide()">{{closeBtnName}}</button>
+</div>

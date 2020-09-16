@@ -66,4 +66,10 @@ export class CardService {
     console.log('Tiny mail : ' + JSON.stringify(tinyMail));
     return this.httpClient.post('http://localhost:8080/api/v1/go-tiny/mails', tinyMail);
   }
+
+  uploadAvatar(imageFile: File, cardName: string): Observable<any> {
+    const uploadImageData = new FormData();
+    uploadImageData.append('imageFile', imageFile, imageFile.name);
+    return this.httpClient.post('http://localhost:8080/api/v1/go-tiny/cards/'+cardName+'/avatar', uploadImageData, {observe: 'response'});
+  }
 }

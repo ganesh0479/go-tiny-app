@@ -19,6 +19,7 @@ import { AddGroupComponent } from './group/add-group/add-group.component';
 import { CardGroupComponent } from './card/card-group/card-group.component';
 import { UserGroupComponent } from './group/user-group/user-group.component';
 import { ShareGroupComponent } from './group/share-group/share-group.component';
+import { AvatarComponent } from './card/avatar/avatar.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ShareGroupComponent } from './group/share-group/share-group.component';
     AddGroupComponent,
     CardGroupComponent,
     UserGroupComponent,
-    ShareGroupComponent
+    ShareGroupComponent,
+    AvatarComponent
   ],
   imports: [
     BrowserModule,

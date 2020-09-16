@@ -7,6 +7,7 @@ import {UpdateCardComponent} from './update-card/update-card.component';
 import {CardGroupComponent} from './card-group/card-group.component';
 import {TinyMail, TinyMailRequest} from '../model/TinyMail';
 import {FormBuilder} from '@angular/forms';
+import {AvatarComponent} from './avatar/avatar.component';
 
 @Component({
   selector: 'app-card',
@@ -27,6 +28,13 @@ export class CardComponent implements OnInit {
   shareForm;
   cardGroupBsModalRef: BsModalRef;
   cardGroupModalOptions: ModalOptions = {
+    animated: true,
+    keyboard: true,
+    backdrop: 'static',
+  };
+
+  avatarBsModalRef: BsModalRef;
+  avatarModalOptions: ModalOptions = {
     animated: true,
     keyboard: true,
     backdrop: 'static',
@@ -53,6 +61,14 @@ export class CardComponent implements OnInit {
     this.cardGroupBsModalRef.content.closeBtnName = 'CANCEL';
     this.cardGroupBsModalRef.content.submitBtnName = 'ASSIGN';
     this.cardGroupBsModalRef.hide();
+  }
+
+  uploadAvatar(cardToUpload: Card): void {
+    this.avatarModalOptions.initialState = {card: cardToUpload};
+    this.avatarBsModalRef = this.bsModalService.show(AvatarComponent, this.avatarModalOptions);
+    this.avatarBsModalRef.content.closeBtnName = 'CANCEL';
+    this.avatarBsModalRef.content.submitBtnName = 'UPLOAD';
+    this.avatarBsModalRef.hide();
   }
 
   deleteCard(cardName: string): void {
