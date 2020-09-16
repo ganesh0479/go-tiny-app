@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <h4 class="modal-title" style="color: #3e53af">ASSIGN USER TO GROUP</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form [formGroup]="userGroup" (ngSubmit)="addUserGroup(userGroup.value)">
+  <div class="modal-body scroll">
+    <label for="userName"><h6>User</h6></label>
+    <select class="form-control" (change)="onselectGroup($event)" formControlName="userName">
+      <option *ngFor="let user of users" [value]="user.name" id="userName"
+              [selected]="user.selected == true">{{user.name}}</option>
+    </select>
+    <label for="roleName"><h6>Role</h6></label>
+    <select class="form-control" (change)="onselectGroup($event)" formControlName="role">
+      <option *ngFor="let role of roles" [value]="role.value" id="roleName"
+              [selected]="role.selected == true">{{role.label}}</option>
+    </select>
+    <br>
+    <br>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-dark"
+    >{{submitBtnName}}</button>
+    <button type="button" class="btn btn-dark" (click)="bsModalRef.hide()">{{closeBtnName}}</button>
+  </div>
+</form>

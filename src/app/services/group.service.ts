@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Group} from '../model/group';
+import {UserGroup} from '../model/user-group';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,10 @@ export class GroupService {
 
   authorizeCardInTheGroup(groupName: string, cardName: string): Observable<any> {
     return this.httpClient.get<any>('http://localhost:8080/api/v1/go-tiny/groups/' + groupName + '/cards/' + cardName + '/authorize');
+  }
+
+  addUserToGroup(userGroup: UserGroup): Observable<any> {
+    console.log('User Service: ' + userGroup);
+    return this.httpClient.patch<any>('http://localhost:8080/api/v1/go-tiny/user-group-role', userGroup);
   }
 }
