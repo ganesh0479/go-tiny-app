@@ -16,6 +16,11 @@ export class CardService {
     return this.httpClient.post<any>('http://localhost:8080/api/v1/go-tiny/cards', card);
   }
 
+  updateCard(card: Card): Observable<any> {
+    console.log('User Service: ' + card);
+    return this.httpClient.patch<any>('http://localhost:8080/api/v1/go-tiny/cards', card);
+  }
+
   approveCard(cardName: string): Observable<any> {
     return this.httpClient.get<any>('http://localhost:8080/api/v1/go-tiny/groups/sample/cards/' + cardName + '/approve');
   }

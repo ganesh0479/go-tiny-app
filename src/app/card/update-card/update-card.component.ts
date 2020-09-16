@@ -1,31 +1,33 @@
 import {Component, OnInit} from '@angular/core';
 import {BsModalRef} from 'ngx-bootstrap/modal';
 import {FormBuilder} from '@angular/forms';
-import {Router} from '@angular/router';
 import {Card} from '../../model/card';
 import {CardService} from '../../services/card.service';
-import {HomeComponent} from '../../home/home.component';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-add-card',
-  templateUrl: './add-card.component.html',
-  styleUrls: ['./add-card.component.css']
+  selector: 'app-update-card',
+  templateUrl: './update-card.component.html',
+  styleUrls: ['./update-card.component.css']
 })
-export class AddCardComponent implements OnInit {
+export class UpdateCardComponent implements OnInit {
 
   closeBtnName: string;
   submitBtnName: string;
+  cardToUpdate: Card;
   card;
 
   constructor(public bsModalRef: BsModalRef, private formBuilder: FormBuilder, private cardService: CardService, private router: Router) {
-    this.card = this.formBuilder.group({title: '', description: '', name: '', actualUrl: '', expiresIn: 0, picture: null});
+    this.card = this.formBuilder.group({title: '', description: '', picture: null, expiresIn: 0});
   }
 
   ngOnInit(): void {
   }
 
-  addCard(cardToAdd: Card): void {
-    this.cardService.addCard(cardToAdd).subscribe({
+  updateCard(cardToAdd: Card): void {
+    console.log('Card to add: ' + cardToAdd);
+    cardToAdd.name = this.cardToUpdate.name;
+    this.cardService.updateCard(cardToAdd).subscribe({
       next: data => this.navigateToHome(data),
       error: error => console.error('There was an error!', error)
     });
@@ -33,8 +35,6 @@ export class AddCardComponent implements OnInit {
 
   private navigateToHome(status: any): void {
     this.bsModalRef.hide();
-    this.router.navigateByUrl('/home', {skipLocationChange: true}).then(() => {
-      this.router.navigate(['/home']);
-    });
+    this.router.navigate(['home']);
   }
 }

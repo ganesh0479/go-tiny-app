@@ -1,0 +1,14 @@
+.scroll {
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
+
+input#file-upload-button{
+  color: white;
+  background: black;
+}

@@ -1,0 +1,9 @@
+.tab-content {
+  overflow-y: scroll;
+  height: 500px;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}

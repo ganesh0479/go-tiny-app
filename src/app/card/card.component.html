@@ -13,7 +13,7 @@
             <h6>{{card.description}}</h6>
           </div>
           <div class="card-footer bg-dark row-cols-3" style="padding-bottom: 0;" *ngIf="tabName===''">
-            <span class="col-1 float-left btn mt-0 mb-0 pt-0 pb-0 text-white" (click)="updateCard()"> <i
+            <span class="col-1 float-left btn mt-0 mb-0 pt-0 pb-0 text-white" (click)="updateCard(card)"> <i
               class="fa fa-edit fa-1x"></i></span>
             <ng-template #popTemplate><span class="btn btn-danger pt-0 pb-0 m-0"
                                             (click)="deleteCard(card.name)">CONFIRM</span>

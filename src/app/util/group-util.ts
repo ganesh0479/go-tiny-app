@@ -5,7 +5,7 @@ export class GroupUtil {
       tabName: 'GROUP CARDS',
       tabActions: [
         {
-          actionName: 'ADD USER'
+          actionName: 'ADD USER TO GROUP'
         }
       ]
     },
