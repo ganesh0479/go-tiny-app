@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" style="margin-left: 30px">
   <div class="row">
     <div *ngFor="let card of cards">
       <div class="clearfix" ng-if="$index % 3 == 0"></div>
@@ -18,9 +18,11 @@
             <ng-template #popTemplate><span class="btn btn-danger pt-0 pb-0 m-0"
                                             (click)="deleteCard(card.name)">CONFIRM</span>
             </ng-template>
-            <span class="col-1 btn mt-0 mb-0 pt-0 pb-0" style="padding-left: 90px" [popover]="popTemplate"
+            <span class="col-1 btn mt-0 mb-0 pt-0 pb-0" style="margin-left: 55px" [popover]="popTemplate"
                   popoverTitle="Are you sure to delete?" placement="top" [outsideClick]="true"> <i
               class="fa fa-archive fa-1x text-white"></i></span>
+            <span class="col-1 btn mt-0 mb-0 pt-0 pb-0 text-white" style="margin-left: 55px" (click)="addCardToGroup()"> <i
+              class="fa fa-google fa-1.5x"></i></span>
             <a class="col-1 float-right btn text-white mt-0 mb-0 pt-0 pb-0" [href]="shareCard()"><i
               class="fa fa-share fa-1x"></i></a>
           </div>

@@ -33,7 +33,7 @@ export class AddCardComponent implements OnInit {
 
   private navigateToHome(status: any): void {
     this.bsModalRef.hide();
-    this.router.navigateByUrl('/home', {skipLocationChange: true}).then(() => {
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
       this.router.navigate(['/home']);
     });
   }

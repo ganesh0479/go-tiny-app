@@ -35,6 +35,8 @@ export class UpdateCardComponent implements OnInit {
 
   private navigateToHome(status: any): void {
     this.bsModalRef.hide();
-    this.router.navigate(['home']);
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate(['/home']);
+    });
   }
 }

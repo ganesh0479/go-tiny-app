@@ -15,6 +15,7 @@ import {GroupCardComponent} from './group/group-card/group-card.component';
 import {AddCardComponent} from './card/add-card/add-card.component';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import { UpdateCardComponent } from './card/update-card/update-card.component';
+import { AddGroupComponent } from './group/add-group/add-group.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { UpdateCardComponent } from './card/update-card/update-card.component';
     GroupComponent,
     GroupCardComponent,
     AddCardComponent,
-    UpdateCardComponent
+    UpdateCardComponent,
+    AddGroupComponent
   ],
   imports: [
     BrowserModule,

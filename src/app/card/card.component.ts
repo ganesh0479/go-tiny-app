@@ -35,6 +35,10 @@ export class CardComponent implements OnInit {
     this.updateBsModalRef.hide();
   }
 
+  addCardToGroup(): void {
+
+  }
+
   deleteCard(cardName: string): void {
     this.cardService.deleteCard(cardName).subscribe({
       next: data => this.navigateToHome(),
@@ -61,6 +65,8 @@ export class CardComponent implements OnInit {
   }
 
   private navigateToHome(): void {
-    this.router.navigate(['home']);
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate(['/home']);
+    });
   }
 }
