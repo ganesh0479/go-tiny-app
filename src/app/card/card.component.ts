@@ -80,13 +80,48 @@ export class CardComponent implements OnInit {
     });
   }
 
-  shareCard(): void {
-    console.log('Inside share method');
+  shareCard(card: Card): string {
+    return 'mailto:?subject=' + card.title + ' Bookmark' + '&body=' + this.constructEmailBody(card);
   }
 
   private navigateToHome(): void {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
       this.router.navigate(['/home']);
     });
+  }
+
+  private constructEmailBody(card: Card): string {
+    return '<body>Hi,<br><br>Please find the ' + '<b>' + card.title + '<b>' + ' bookmark. Please click on Go Tiny to visit webpage.<br><br>'
+      + this.constructEmailCardHeader(card.title) + this.constructEmailCardBody(card.description)
+      + this.constructEmailCardFooter(card.tinyUrl);
+  }
+
+  private constructEmailCardHeader(title: string): string {
+    return '<table style="width: 300px;height: 200px;font-family: \'Calibri\'">\n' +
+      '  <tr>\n' +
+      '    <th style="background-color: black; color: white;height:75px;font-size: 30px">\n' +
+      '      <b>' + title;
+  }
+
+  private constructEmailCardBody(description: string): string {
+    return '</b>\n' +
+      '    </th>\n' +
+      '  </tr>\n' +
+      '  <tr>\n' +
+      '    <td>\n' +
+      '      <b>' + description;
+  }
+
+  private constructEmailCardFooter(tinyUrl: string): string {
+    return '</b>\n' +
+      '    </td>\n' +
+      '  </tr>\n' +
+      '  <tr style="height: 40px">\n' +
+      '    <th style="background-color: black; color: white;">\n' +
+      '      <a href="' + tinyUrl + '"' + '>Go Tiny</a>\n' +
+      '    </th>\n' +
+      '  </tr>\n' +
+      '</table>\n' +
+      '</body>';
   }
 }

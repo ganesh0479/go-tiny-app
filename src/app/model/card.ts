@@ -5,4 +5,5 @@ export class Card {
   public actualUrl: string;
   public expiresIn: string;
   public picture: File;
+  public tinyUrl: string;
 }
