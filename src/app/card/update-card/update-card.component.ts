@@ -15,6 +15,8 @@ export class UpdateCardComponent implements OnInit {
   closeBtnName: string;
   submitBtnName: string;
   cardToUpdate: Card;
+  tabName: string;
+  groupName: string;
   card;
 
   constructor(public bsModalRef: BsModalRef, private formBuilder: FormBuilder, private cardService: CardService, private router: Router) {
@@ -27,10 +29,17 @@ export class UpdateCardComponent implements OnInit {
   updateCard(cardToAdd: Card): void {
     console.log('Card to add: ' + cardToAdd);
     cardToAdd.name = this.cardToUpdate.name;
-    this.cardService.updateCard(cardToAdd).subscribe({
-      next: data => this.navigateToHome(data),
-      error: error => console.error('There was an error!', error)
-    });
+    if (this.tabName === 'GROUP CARDS') {
+      this.cardService.updateCardInTheGroup(cardToAdd, this.groupName).subscribe({
+        next: data => this.navigateToHome(data),
+        error: error => console.error('There was an error!', error)
+      });
+    } else {
+      this.cardService.updateCard(cardToAdd).subscribe({
+        next: data => this.navigateToHome(data),
+        error: error => console.error('There was an error!', error)
+      });
+    }
   }
 
   private navigateToHome(status: any): void {

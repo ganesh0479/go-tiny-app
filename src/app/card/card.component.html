@@ -12,7 +12,7 @@
           <div class="card-body scroll">
             <h6>{{card.description}}</h6>
           </div>
-          <div class="card-footer bg-dark row-cols-3" style="padding-bottom: 0;" *ngIf="tabName===''">
+          <div class="card-footer bg-dark row-cols-3" style="padding-bottom: 0;" *ngIf="tabName===undefined">
             <span class="col-1 float-left btn mt-0 mb-0 pt-0 pb-0 text-white" (click)="updateCard(card)"> <i
               class="fa fa-edit fa-1x"></i></span>
             <ng-template #popTemplate><span class="btn btn-danger pt-0 pb-0 m-0"
@@ -26,14 +26,27 @@
             <a class="col-1 float-right btn text-white mt-0 mb-0 pt-0 pb-0" [href]="shareCard()"><i
               class="fa fa-share fa-1x"></i></a>
           </div>
-          <div class="card-footer bg-dark row ml-0 mr-0 pb-0 mt-0" style="padding-top: 3px" *ngIf="tabName==='APPROVE'">
+          <div class="card-footer bg-dark row ml-0 mr-0 pb-0 mt-0" style="padding-top: 3px"
+               *ngIf="tabName==='PENDING CARDS'">
               <span class="btn mt-0 mb-0 pt-0 pb-0 pl-4 ml-5 text-white justify-content-center"
                     (click)="approveCard(card.name)"><h5>APPROVE</h5></span>
           </div>
           <div class="card-footer bg-dark row ml-0 mr-0 pb-0 mt-0" style="padding-top: 3px"
-               *ngIf="tabName==='AUTHORIZE'">
+               *ngIf="tabName==='AUTHORIZE CARDS'">
                <span class="btn mt-0 mb-0 pt-0 pb-0 pl-4 ml-5 text-white justify-content-center"
                      (click)="authorizeCard(card.name)"><h5>AUTHORIZE</h5></span>
+          </div>
+          <div class="card-footer bg-dark row-cols-3" style="padding-bottom: 0;" *ngIf="tabName==='GROUP CARDS'">
+            <span class="col-1 float-left btn mt-0 mb-0 pt-0 pb-0 text-white" (click)="updateCard(card)"> <i
+              class="fa fa-edit fa-1x"></i></span>
+            <ng-template #popTemplate><span class="btn btn-danger pt-0 pb-0 m-0"
+                                            (click)="deleteCard(card.name)">CONFIRM</span>
+            </ng-template>
+            <span class="col-1 btn mt-0 mb-0 pt-0 pb-0" style="padding-left: 90px" [popover]="popTemplate"
+                  popoverTitle="Are you sure to delete?" placement="top" [outsideClick]="true"> <i
+              class="fa fa-archive fa-1x text-white"></i></span>
+            <a class="col-1 float-right btn text-white mt-0 mb-0 pt-0 pb-0" [href]="shareCard()"><i
+              class="fa fa-share fa-1x"></i></a>
           </div>
         </div>
       </div>

@@ -64,4 +64,10 @@ export class GroupCardComponent implements OnInit {
       this.cards = data.cardResponses;
     });
   }
+
+  getCardsOfGroupByStatus(groupName: string, status: string): void {
+    this.cardService.getCardsBelongToGroup(groupName).subscribe(data => {
+      this.cards = data.cardResponses;
+    });
+  }
 }

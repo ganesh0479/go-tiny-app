@@ -14,7 +14,8 @@ import {CardGroupComponent} from './card-group/card-group.component';
 export class CardComponent implements OnInit {
 
   @Input() cards: Card[];
-  @Input() tabName = '';
+  @Input() tabName: string;
+  @Input() groupName: string;
   updateBsModalRef: BsModalRef;
   updateModalOptions: ModalOptions = {
     animated: true,
@@ -36,7 +37,7 @@ export class CardComponent implements OnInit {
   }
 
   updateCard(card: Card): void {
-    this.updateModalOptions.initialState = {cardToUpdate: card};
+    this.updateModalOptions.initialState = {cardToUpdate: card, tabName: this.tabName, groupName: this.groupName};
     this.updateBsModalRef = this.bsModalService.show(UpdateCardComponent, this.updateModalOptions);
     this.updateBsModalRef.content.closeBtnName = 'CANCEL';
     this.updateBsModalRef.content.submitBtnName = 'UPDATE';

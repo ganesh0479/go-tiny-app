@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Card} from '../model/card';
 import {CardGroup} from '../model/card-group';
@@ -27,6 +27,11 @@ export class CardService {
     return this.httpClient.patch<any>('http://localhost:8080/api/v1/go-tiny/cards', card);
   }
 
+  updateCardInTheGroup(card: Card, groupName: string): Observable<any> {
+    console.log('User Service: ' + card);
+    return this.httpClient.patch<any>('http://localhost:8080/api/v1/go-tiny/cards/groups/' + groupName, card,);
+  }
+
   approveCard(cardName: string): Observable<any> {
     return this.httpClient.get<any>('http://localhost:8080/api/v1/go-tiny/groups/sample/cards/' + cardName + '/approve');
   }
@@ -45,5 +50,9 @@ export class CardService {
 
   getCardsBelongToGroup(groupName: string): Observable<any> {
     return this.httpClient.get<any>('http://localhost:8080/api/v1/go-tiny/cards/groups/' + groupName);
+  }
+
+  getCardsBelongToGroupByStatus(groupName: string, status: string): Observable<any> {
+    return this.httpClient.get<any>('http://localhost:8080/api/v1/go-tiny/cards/' + status + '/groups/' + groupName);
   }
 }
