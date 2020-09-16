@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <h4 class="modal-title" style="color: #3e53af">ADD CARD TO GROUP</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form [formGroup]="cardGroup" (ngSubmit)="addCardToGroup(cardGroup.value)">
+  <div class="modal-body scroll">
+    <label for="title"><h6>Card Name</h6></label>
+    <input type="text" class="form-control" placeholder="Enter card name" id="title" formControlName="cardName">
+    <br>
+    <label for="name"><h6>Group Name</h6></label>
+    <input type="text" class="form-control" placeholder="Enter group name" id="name" formControlName="groupName">
+    <br>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-dark"
+    >{{submitBtnName}}</button>
+    <button type="button" class="btn btn-dark" (click)="bsModalRef.hide()">{{closeBtnName}}</button>
+  </div>
+</form>

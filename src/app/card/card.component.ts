@@ -4,6 +4,7 @@ import {CardService} from '../services/card.service';
 import {Router} from '@angular/router';
 import {BsModalRef, BsModalService, ModalOptions} from 'ngx-bootstrap/modal';
 import {UpdateCardComponent} from './update-card/update-card.component';
+import {CardGroupComponent} from './card-group/card-group.component';
 
 @Component({
   selector: 'app-card',
@@ -16,6 +17,13 @@ export class CardComponent implements OnInit {
   @Input() tabName = '';
   updateBsModalRef: BsModalRef;
   updateModalOptions: ModalOptions = {
+    animated: true,
+    keyboard: true,
+    backdrop: 'static',
+  };
+
+  cardGroupBsModalRef: BsModalRef;
+  cardGroupModalOptions: ModalOptions = {
     animated: true,
     keyboard: true,
     backdrop: 'static',
@@ -36,7 +44,10 @@ export class CardComponent implements OnInit {
   }
 
   addCardToGroup(): void {
-
+    this.cardGroupBsModalRef = this.bsModalService.show(CardGroupComponent, this.cardGroupModalOptions);
+    this.cardGroupBsModalRef.content.closeBtnName = 'CANCEL';
+    this.cardGroupBsModalRef.content.submitBtnName = 'ASSIGN';
+    this.cardGroupBsModalRef.hide();
   }
 
   deleteCard(cardName: string): void {
