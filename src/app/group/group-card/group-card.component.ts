@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {GroupUtil} from '../../util/group-util';
 import {Card} from '../../model/card';
 import {Router} from '@angular/router';
+import {CardService} from '../../services/card.service';
 
 @Component({
   selector: 'app-group-card',
@@ -14,12 +15,13 @@ export class GroupCardComponent implements OnInit {
   groupTabs: any;
   cards: Card[];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private cardService: CardService) {
   }
 
   ngOnInit(): void {
     console.log('Group Card: ' + this.groupName);
     this.tabsToShow(this.role);
+    this.getCardsOfGroup(this.groupName);
   }
 
   tabsToShow(role: string): void {
@@ -55,5 +57,11 @@ export class GroupCardComponent implements OnInit {
   }
 
   authorizeCard(): void {
+  }
+
+  getCardsOfGroup(groupName: string): void {
+    this.cardService.getCardsBelongToGroup(groupName).subscribe(data => {
+      this.cards = data.cardResponses;
+    });
   }
 }

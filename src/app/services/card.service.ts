@@ -42,4 +42,8 @@ export class CardService {
   getCardsNotBelongToGroup(): Observable<any> {
     return this.httpClient.get<any>('http://localhost:8080/api/v1/go-tiny/cards/');
   }
+
+  getCardsBelongToGroup(groupName: string): Observable<any> {
+    return this.httpClient.get<any>('http://localhost:8080/api/v1/go-tiny/cards/groups/' + groupName);
+  }
 }
