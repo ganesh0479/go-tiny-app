@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Group} from '../model/group';
 import {UserGroup} from '../model/user-group';
+import {GroupUtil} from '../util/group-util';
 
 @Injectable({
   providedIn: 'root'
@@ -14,24 +15,24 @@ export class GroupService {
 
   add(group: Group): Observable<any> {
     console.log('User Service: ' + group);
-    return this.httpClient.post<any>('http://localhost:8080/api/v1/go-tiny/groups', group);
+    return this.httpClient.post<any>(GroupUtil.apiUrl + '/api/v1/go-tiny/groups', group);
   }
 
   getUserGroups(user: string): Observable<any> {
     console.log('User Service: ' + user);
-    return this.httpClient.get<any>('http://localhost:8080/api/v1/go-tiny/user-group-role/' + user);
+    return this.httpClient.get<any>(GroupUtil.apiUrl + '/api/v1/go-tiny/user-group-role/' + user);
   }
 
   approveCardInTheGroup(groupName: string, cardName: string): Observable<any> {
-    return this.httpClient.get<any>('http://localhost:8080/api/v1/go-tiny/groups/' + groupName + '/cards/' + cardName + '/approve');
+    return this.httpClient.get<any>(GroupUtil.apiUrl + '/api/v1/go-tiny/groups/' + groupName + '/cards/' + cardName + '/approve');
   }
 
   authorizeCardInTheGroup(groupName: string, cardName: string): Observable<any> {
-    return this.httpClient.get<any>('http://localhost:8080/api/v1/go-tiny/groups/' + groupName + '/cards/' + cardName + '/authorize');
+    return this.httpClient.get<any>(GroupUtil.apiUrl + '/api/v1/go-tiny/groups/' + groupName + '/cards/' + cardName + '/authorize');
   }
 
   addUserToGroup(userGroup: UserGroup): Observable<any> {
     console.log('User Service: ' + userGroup);
-    return this.httpClient.patch<any>('http://localhost:8080/api/v1/go-tiny/user-group-role', userGroup);
+    return this.httpClient.patch<any>(GroupUtil.apiUrl + '/api/v1/go-tiny/user-group-role', userGroup);
   }
 }

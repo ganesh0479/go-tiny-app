@@ -1,3 +1,8 @@
+# For Design and implementation please visit github pages
+
+> # [CLICK HERE TO SEE DESIGN](https://ganesh0479.github.io/go-tiny-docs/)
+
+
 # GoTinyApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5.

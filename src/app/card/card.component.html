@@ -5,13 +5,14 @@
       <div class="col-3">
         <div class="card zoom" style="width: 300px;height: 200px">
           <div class="card-header bg-dark text-white scrollHeader">
-            <span class="float-left btn text-white" (click)="uploadAvatar(card)"><i class="fa fa-pencil"></i><img src="favicon.ico"
-                                                                                 class="rounded-circle"
-                                                                                     alt="{{card.title}}"
-                                                                                     width="40" height="40"> </span>
+            <span class="float-left btn text-white" (click)="uploadAvatar(card)"><i class="fa fa-pencil"></i><img
+              src="favicon.ico"
+              class="rounded-circle"
+              alt="{{card.title}}"
+              width="40" height="40"> </span>
             <span class="scrollHeader"> <b>{{card.title}}</b></span>
           </div>
-          <div class="card-body scroll">
+          <div class="card-body scroll" (click)="redirectToUrl(card)">
             <h6>{{card.description}}</h6>
           </div>
           <div class="card-footer bg-dark row-cols-3" style="padding-bottom: 0;" *ngIf="tabName===undefined">

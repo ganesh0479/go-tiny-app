@@ -26,4 +26,6 @@ export class GroupUtil {
     tabName: 'GROUP CARDS',
     tabActions: []
   }];
+
+  public static apiUrl = 'http://20.193.251.252';
 }

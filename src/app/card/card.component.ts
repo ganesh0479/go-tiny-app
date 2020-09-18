@@ -71,6 +71,10 @@ export class CardComponent implements OnInit {
     this.avatarBsModalRef.hide();
   }
 
+  redirectToUrl(card: Card): void {
+    window.open(card.tinyUrl, '_blank');
+  }
+
   deleteCard(cardName: string): void {
     if (this.tabName === 'GROUP CARDS') {
       this.cardService.deleteCardInTheGroup(cardName, this.groupName).subscribe({

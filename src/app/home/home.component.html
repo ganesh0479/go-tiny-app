@@ -1,26 +1,28 @@
-<ngb-tabset class="nav-justified" style="height: 500px" [activeId]="activeTab">>
-  <ngb-tab id="card">
-    <ng-template ngbTabTitle><h3>CARDS</h3></ng-template>
-    <ng-template ngbTabContent>
-      <br><br>
-      <div class="row justify-content-between">
-        <div class="col-3"></div>
-        <div class="col-3">
-          <span class="btn btn-info align-content-center" (click)="addCard()"><h5>ADD CARD</h5></span>
+<div class="container-fluid">
+  <ngb-tabset class="nav-justified" style="height: 500px" [activeId]="activeTab">>
+    <ngb-tab id="card">
+      <ng-template ngbTabTitle><h3>CARDS</h3></ng-template>
+      <ng-template ngbTabContent>
+        <br><br>
+        <div class="row justify-content-between">
+          <div class="col-3"></div>
+          <div class="col-3">
+            <span class="btn btn-info align-content-center" (click)="addCard()"><h5>ADD CARD</h5></span>
+          </div>
+          <div class="col-3">
+          </div>
+          <div class="col-3">
+          </div>
         </div>
-        <div class="col-3">
-        </div>
-        <div class="col-3">
-        </div>
-      </div>
-      <br><br>
-      <app-card [cards]="cards"></app-card>
-    </ng-template>
-  </ngb-tab>
-  <ngb-tab id="group">
-    <ng-template ngbTabTitle><h3>GROUPS</h3></ng-template>
-    <ng-template ngbTabContent>
-      <app-group></app-group>
-    </ng-template>
-  </ngb-tab>
-</ngb-tabset>
+        <br><br>
+        <app-card [cards]="cards"></app-card>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab id="group">
+      <ng-template ngbTabTitle><h3>GROUPS</h3></ng-template>
+      <ng-template ngbTabContent>
+        <app-group></app-group>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>
